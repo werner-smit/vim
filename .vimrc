@@ -3,6 +3,9 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 
+""Ignore Ruby warnings
+let g:LustyJugglerSuppressRubyWarning = 1
+
 let mapleader=","
 
 colorscheme wombat256
@@ -40,3 +43,5 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 nmap <Leader>/ :LustyJugglePrevious<CR>
+nmap <Leader>c :Bclose<CR>
+
