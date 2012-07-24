@@ -10,6 +10,11 @@ let mapleader=","
 
 colorscheme wombat256
 
+""Clipboard funkyness
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+set clipboard=unnamedplus
+imap <C-v> <Esc><C-v>a
+
 set hidden
 set noswapfile
 
@@ -42,6 +47,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+""Buffer toggle
+nmap <f2> :bprevious<CR>
+nmap <f3> :bnext<CR>
+
 nmap <Leader>/ :LustyJugglePrevious<CR>
 nmap <Leader>c :Bclose<CR>
+nmap <Leader>h :MRU<CR>
 
