@@ -23,7 +23,7 @@ set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
 set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set showmatch     " set show matching parenthesis
+""set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
@@ -55,3 +55,5 @@ nmap <Leader>/ :LustyJugglePrevious<CR>
 nmap <Leader>c :Bclose<CR>
 nmap <Leader>h :MRU<CR>
 
+set colorcolumn=80
+highlight ColorColumn guibg=Black
