@@ -1,6 +1,6 @@
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplMapCTabSwitchBufs = 0
 let g:miniBufExplModSelTarget = 1 
 
 ""Ignore Ruby warnings
@@ -17,6 +17,8 @@ imap <C-v> <Esc><C-v>a
 
 set hidden
 set noswapfile
+
+set title 	"change terminals title
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
