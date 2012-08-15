@@ -10,12 +10,14 @@ function! LoadProject(name)
     	exe 'source '.project_dir.' Session.vim'
     	echo 'Loading Session.vim'
     endif
-    set tags=tags
+    set tags=./tags;~/
 endfunction
 
 function! SaveProject()
     let tablist = []
     for i in range(tabpagenr('$'))
+	let fname = bufname(i+0+1)
+	echo fname
 	call extend(tablist, tabpagebuflist(i + 1))
     endfor
     echo tablist
