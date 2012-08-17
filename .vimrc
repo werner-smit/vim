@@ -1,7 +1,11 @@
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 0
+let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+"let g:miniBufExplSplitBelow = 1
+let g:miniBufExplUseSingleClick = 1
+
+
 
 ""Ignore Ruby warnings
 let g:LustyJugglerSuppressRubyWarning = 1
@@ -54,9 +58,13 @@ map <C-l> <C-w>l
 nmap <f2> :bprevious<CR>
 nmap <f3> :bnext<CR>
 
+nmap <f6> :TlistToggle<CR>
+nmap <f5> :NERDTreeToggle<CR>
+
 nmap <Leader>/ :LustyJugglePrevious<CR>
 nmap <Leader>c :Bclose<CR>
 nmap <Leader>h :MRU<CR>
+
 
 set colorcolumn=80
 highlight ColorColumn guibg=Black
@@ -64,4 +72,8 @@ highlight ColorColumn guibg=Black
 "Powerline tweaks
 set laststatus=2
 
-
+hi MBEVisibleActive guifg=#FFFFFF guibg=#3399ff
+hi MBEVisibleChangedActive guifg=#FFFFFF guibg=#FF00FF
+hi MBEVisibleNormal guifg=#66ccff guibg=#666666
+hi MBENormal guifg=#cccccc guibg=#666666
+hi MBEChanged guifg=#FF00FF guibg=#666666
