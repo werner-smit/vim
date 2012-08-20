@@ -58,12 +58,12 @@ endfunction
 
 function! s:ProjectList(ArgLead, CmdLine, CursorPos)
     let paths = filter(split(globpath(g:workspace_dir, '*'), '\n'), 'v:val=~? a:ArgLead')
-    let names = [getcwd()]
+    let names = [getcwd().'/']
     for path in paths
     	call add(names,split(path, '/')[-1:][0])
     endfor
     return names
 endfunction
 
-command! -bang -complete=dir -nargs=? Save call SaveProject('<args>')
+command! -bang -complete=customlist,s:ProjectList -nargs=? Save call SaveProject('<args>')
 command! -bang -complete=customlist,s:ProjectList -nargs=? Load call LoadProject('<args>')
