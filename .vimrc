@@ -1,3 +1,12 @@
+" Pathogen load
+filetype off
+
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin indent on
+syntax on
+
 set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**
 
 let g:miniBufExplMapWindowNavVim = 1
@@ -97,11 +106,11 @@ set guifont=Monospace\ 9
 " python-mode settings
 let g:pymode_folding = 0
 let g:pymode_utils_whitespaces = 0
-let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_ignore = ""
 let g:pyflakes_use_quickfix = 0
 let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
-let g:pymode_lint_onfly = 1
-"let g:pymode_paths = '/home/werner/src/voss2/eggs/'
+let g:pymode_lint_on_fly = 0
+let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
 " Command-T
 let g:CommandTMaxHeight=15

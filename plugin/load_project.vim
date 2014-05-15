@@ -78,7 +78,9 @@ function! s:getProjectDict()
     let proj_dict = {}
     for _file in readfile(project_list)
         let _path_lst = split(_file, ':')
-        let proj_dict[_path_lst[0]] = _path_lst[1] 
+        if len(_path_lst) > 0
+            let proj_dict[_path_lst[0]] = _path_lst[1] 
+        endif
     endfor
     return proj_dict
 endfunction
