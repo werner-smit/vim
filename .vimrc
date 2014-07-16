@@ -82,6 +82,8 @@ nmap <Leader>c :Bclose<CR>
 nmap <Leader>h :MRU<CR>
 
 
+map <Leader>f :!python -m json.tool<CR>
+
 set colorcolumn=80
 highlight ColorColumn guibg=Black
 
@@ -101,16 +103,22 @@ hi MBEChanged guifg=#FF00FF guibg=#666666
 "Open taglist on the right
 let Tlist_Use_Right_Window = 1
 
+" Set some GUI options
 set guifont=Monospace\ 9
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+
 
 " python-mode settings
 let g:pymode_folding = 0
 let g:pymode_utils_whitespaces = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-let g:pymode_lint_ignore = ""
-let g:pyflakes_use_quickfix = 0
+let g:pymode_lint = 1
+let g:pymode_lint_checkers = ['pyflakes']
 let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
 let g:pymode_lint_on_fly = 0
+let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_lookup_project = 0
 " Command-T
 let g:CommandTMaxHeight=15
