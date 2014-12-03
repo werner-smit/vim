@@ -15,7 +15,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 "let g:miniBufExplSplitBelow = 1
 let g:miniBufExplUseSingleClick = 1
-
+let g:miniBufExplDebugLevel = 0
+let g:miniBufExplorerDebugLevel = 0
 let python_highlight_all = 1
 
 ""Ignore Ruby warnings
@@ -38,7 +39,7 @@ set title 	"change terminals title
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-set shiftwidth=4  " number of spaces to use for autoindenting
+
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 ""set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
@@ -52,7 +53,7 @@ set nowrap " Disable Wrapping
 syntax enable
 
 filetype plugin indent on
-"autocmd filetype python set expandtab
+autocmd FileType javascript set shiftwidth=4 tabstop=4
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 set expandtab
 
@@ -83,7 +84,7 @@ nmap <Leader>h :MRU<CR>
 
 
 map <Leader>f :!python -m json.tool<CR>
-
+autocmd FileType python map <buffer> <[[>
 set colorcolumn=80
 highlight ColorColumn guibg=Black
 
@@ -108,17 +109,23 @@ set guifont=Monospace\ 9
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 
-
 " python-mode settings
 let g:pymode_folding = 0
 let g:pymode_utils_whitespaces = 0
 let g:pymode_lint = 1
-let g:pymode_lint_checkers = ['pyflakes']
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
-let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_complete_on_dot = 1
 let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_regenerate_on_write = 0
+let g:pymode_rope = 1 
+let g:pymode_options_max_line_length = 119
+
+setlocal textwidth=120
+"
 " Command-T
 let g:CommandTMaxHeight=15
+command! -nargs=+ -complete=file -bar Grep grep! <args> **/*.py | copen

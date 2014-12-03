@@ -4,3 +4,9 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/taglist.vim"]
+	path = bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "bundle/vim-windowswap"]
+	path = bundle/vim-windowswap
+	url = https://github.com/wesQ3/vim-windowswap.git
