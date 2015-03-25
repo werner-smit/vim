@@ -7,7 +7,9 @@ call pathogen#helptags()
 filetype plugin indent on
 syntax on
 
-set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**
+set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**/*.xml,lib/model/device/**/*.xsd
+
+let g:airline#extensions#tabline#enabled = 1
 
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
@@ -75,16 +77,14 @@ imap <c-s> <Esc><c-s>
 nmap <Leader>q :bprevious<CR>
 nmap <Leader>w :bnext<CR>
 
-nmap <f6> :TlistToggle<CR>
 nmap <f5> :NERDTreeToggle<CR>
 
-nmap <Leader>/ :LustyJugglePrevious<CR>
 nmap <Leader>c :Bclose<CR>
 nmap <Leader>h :MRU<CR>
 
 
 map <Leader>f :!python -m json.tool<CR>
-autocmd FileType python map <buffer> <[[>
+" autocmd FileType python map <buffer> <[[>
 set colorcolumn=80
 highlight ColorColumn guibg=Black
 
@@ -93,16 +93,15 @@ au BufRead *.py let &colorcolumn=join(range(81,120),",")
 au BufRead *.py highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 "Powerline tweaks
-set laststatus=2
+" set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'dark'
 
 hi MBEVisibleActive guifg=#FFFFFF guibg=#3399ff
 hi MBEVisibleChangedActive guifg=#FFFFFF guibg=#FF00FF
 hi MBEVisibleNormal guifg=#66ccff guibg=#666666
 hi MBENormal guifg=#cccccc guibg=#666666
 hi MBEChanged guifg=#FF00FF guibg=#666666
-
-"Open taglist on the right
-let Tlist_Use_Right_Window = 1
 
 " Set some GUI options
 set guifont=Monospace\ 9
@@ -117,6 +116,9 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
+let g:pymode_lint_cwindow = 0
+let g:pymode_rope_completion_bind = '<C-Space>'
+
 let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
 let g:pymode_rope_complete_on_dot = 1
 let g:pymode_rope_lookup_project = 0
@@ -128,4 +130,14 @@ setlocal textwidth=120
 "
 " Command-T
 let g:CommandTMaxHeight=15
-command! -nargs=+ -complete=file -bar Grep grep! <args> **/*.py | copen
+command! -nargs=+ -complete=file -bar Grep copen | grep! <args> **/*.py 
+
+nmap <Leader>s ysiw'
+
+" comment code
+vnoremap # :s#^#\##<cr>:let @/ = ""<cr>
+vnoremap -# :s#^\###<cr>:let @/ = ""<cr>
+
+" Read the output of a command into a buffer
+":command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+:command! -nargs=* -complete=shellcmd GitBlame let blah = system('git blame '.expand("%")) | tabnew |  new | setlocal buftype=nofile bufhidden=hide noswapfile | put =blah | only

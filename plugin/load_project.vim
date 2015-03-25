@@ -1,5 +1,6 @@
 let g:workspace_dir='/home/werner/workspace/'
 let g:project_loaded = 0
+
 function! LoadProject(name)
     let g:project_loaded = 0
     let pname = a:name
@@ -54,7 +55,6 @@ endfunction
 function! SaveProject()
     let tablist = []
     if g:project_loaded != 1
-        echo 'Project still loading...'
         return
     endif
     for i in BufffersList()
@@ -69,7 +69,6 @@ function! SaveProject()
     	echo "No project loaded.."
     	return
     endif
-    echo 'Saving '. len(tablist) .' file(s) to: '. save_file
     call writefile(tablist, save_file)
 endfunction
 
@@ -140,4 +139,5 @@ command! -bang -nargs=? PRJAdd call AddProject()
 command! -bang -complete=customlist,s:ProjectList -nargs=? PRJLoad call LoadProject('<args>')
 command! -bang -nargs=? PRJSave call SaveProject()
 
-autocmd BufNew * call SaveProject()
+" autocmd BufNew * call SaveProject()
+autocmd BufReadPost * call SaveProject()
