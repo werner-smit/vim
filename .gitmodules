@@ -7,9 +7,6 @@
 [submodule "bundle/taglist.vim"]
 	path = bundle/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule "bundle/vim-windowswap"]
-	path = bundle/vim-windowswap
-	url = https://github.com/wesQ3/vim-windowswap.git
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline
