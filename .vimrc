@@ -1,6 +1,6 @@
 " Pathogen load
 filetype off
-
+set encoding=utf-8
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -53,7 +53,7 @@ set hlsearch      " highlight search terms
 "set incsearch     " show search matches as you type
 set nowrap " Disable Wrapping
 syntax enable
-
+set shiftwidth=4 tabstop=4
 filetype plugin indent on
 autocmd FileType javascript set shiftwidth=4 tabstop=4
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -80,7 +80,11 @@ nmap <Leader>w :bnext<CR>
 nmap <f5> :NERDTreeToggle<CR>
 
 nmap <Leader>c :Bclose<CR>
+nmap <Leader>d :bdelete<CR>
 nmap <Leader>h :MRU<CR>
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 
 map <Leader>f :!python -m json.tool<CR>
@@ -105,6 +109,8 @@ hi MBEChanged guifg=#FF00FF guibg=#666666
 
 " Set some GUI options
 set guifont=Monospace\ 9
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 9"
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9"
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 
@@ -120,7 +126,7 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_rope_completion_bind = '<C-Space>'
 
 let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
-let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope = 1 
