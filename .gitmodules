@@ -25,3 +25,12 @@
 [submodule "bundle/vim-colorscheme-switcher"]
 	path = bundle/vim-colorscheme-switcher
 	url = https://github.com/xolox/vim-colorscheme-switcher.git
+[submodule "/home/werner/.vim/bundle/vim-javascript"]
+	path = /home/werner/.vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
