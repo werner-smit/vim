@@ -132,13 +132,22 @@ let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope = 1 
 let g:pymode_options_max_line_length = 119
 
+
+let g:pymode_breakpoint_cmd = 'import pudb; pudb.set_trace()  # XXX BREAKPOINT'
+
 setlocal textwidth=120
 "
 " Command-T
 let g:CommandTMaxHeight=15
 command! -nargs=+ -complete=file -bar Grep copen | grep! <args> **/*.py 
 
+" Surround with single quote
 nmap <Leader>s ysiw'
+
+" Vim notes: RecentNotes
+nmap <Leader>nr :RecentNotes<cr>
+nmap <Leader>nn :edit note:<cr>
+nmap <Leader>nd :DeleteNote<cr>
 
 " comment code
 vnoremap # :s#^#\##<cr>:let @/ = ""<cr>
