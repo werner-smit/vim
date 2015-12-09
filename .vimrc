@@ -27,6 +27,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 let mapleader=","
 
 colorscheme wombat256
+colorscheme rdark
 
 ""Clipboard funkyness
 "#nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -117,7 +118,8 @@ set guioptions-=T  "remove toolbar
 " python-mode settings
 let g:pymode_folding = 0
 let g:pymode_utils_whitespaces = 0
-let g:pymode_lint = 1
+let g:pymode_lint = 0
+let g:pymode_lint_write = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
 let g:pymode_lint_on_fly = 0
@@ -135,14 +137,28 @@ let g:pymode_options_max_line_length = 119
 
 let g:pymode_breakpoint_cmd = 'import pudb; pudb.set_trace()  # XXX BREAKPOINT'
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225,E702,E265'
 setlocal textwidth=120
 "
 " Command-T
 let g:CommandTMaxHeight=15
+
+" Grep all python files in current path.
 command! -nargs=+ -complete=file -bar Grep copen | grep! <args> **/*.py 
 
 " Surround with single quote
-nmap <Leader>s ysiw'
+nmap <Leader>s ysiw
 
 " Vim notes: RecentNotes
 nmap <Leader>nr :RecentNotes<cr>
@@ -156,3 +172,6 @@ vnoremap -# :s#^\###<cr>:let @/ = ""<cr>
 " Read the output of a command into a buffer
 ":command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
 :command! -nargs=* -complete=shellcmd GitBlame let blah = system('git blame '.expand("%")) | tabnew |  new | setlocal buftype=nofile bufhidden=hide noswapfile | put =blah | only
+
+" YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
