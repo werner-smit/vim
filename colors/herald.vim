@@ -13,6 +13,7 @@ endif
 let colors_name = "herald"
 
 set background=dark
+" set background=black
 
 " Set some syntax-related variables
 let ruby_operators = 1
@@ -171,7 +172,7 @@ elseif &t_Co == 256
 	hi Identifier     ctermbg=234  ctermfg=75    cterm=none
 	hi Function       ctermbg=234  ctermfg=117   cterm=none
 	hi Ignore         ctermbg=234  ctermfg=234   cterm=none
-	hi MatchParen     ctermbg=214  ctermfg=234   cterm=none
+	hi MatchParen     ctermbg=234  ctermfg=214  cterm=none
 	hi PreProc        ctermbg=234  ctermfg=141   cterm=none
 	hi Special        ctermbg=234  ctermfg=227   cterm=none
 	hi Todo           ctermbg=234  ctermfg=203   cterm=bold

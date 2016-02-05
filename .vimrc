@@ -1,3 +1,4 @@
+set t_Co=256
 " Pathogen load
 filetype off
 set encoding=utf-8
@@ -26,8 +27,9 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 let mapleader=","
 
-colorscheme wombat256
-colorscheme rdark
+"colorscheme wombat256
+"colorscheme rdark
+colorscheme herald
 
 ""Clipboard funkyness
 "#nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -145,9 +147,13 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_signs = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_highlighting = 0
 "let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers=['flake8']
+
 let g:syntastic_python_flake8_args='--ignore=E501,E225,E702,E265'
 setlocal textwidth=120
 "
