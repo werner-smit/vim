@@ -26,7 +26,7 @@
 	path = bundle/vim-colorscheme-switcher
 	url = https://github.com/xolox/vim-colorscheme-switcher.git
 [submodule "/home/werner/.vim/bundle/vim-javascript"]
-	path = /home/werner/.vim/bundle/vim-javascript
+	path = bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
@@ -37,3 +37,15 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-ansible-yaml"]
+	path = bundle/vim-ansible-yaml
+	url = git://github.com/chase/vim-ansible-yaml.git
+[submodule "bundle/vim-taskwarrior"]
+	path = bundle/vim-taskwarrior
+	url = https://github.com/farseer90718/vim-taskwarrior
+[submodule "bundle/vim-python-pep8-indent"]
+	path = bundle/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git
+[submodule "bundle/vim-project-man"]
+	path = bundle/vim-project-man
+	url = https://github.com/werner-smit/vim-project-man.git

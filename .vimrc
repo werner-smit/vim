@@ -20,16 +20,18 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplDebugLevel = 0
 let g:miniBufExplorerDebugLevel = 0
-let python_highlight_all = 1
+"let python_highlight_all = 1
 
 ""Ignore Ruby warnings
+"@Deprecated?
 let g:LustyJugglerSuppressRubyWarning = 1
 
 let mapleader=","
 
 "colorscheme wombat256
 "colorscheme rdark
-colorscheme herald
+"colorscheme herald
+colorscheme molokai
 
 ""Clipboard funkyness
 "#nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -53,15 +55,21 @@ set smartcase     " ignore case if search pattern is all lowercase,
 set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
 set hlsearch      " highlight search terms
+
 "set incsearch     " show search matches as you type
 set nowrap " Disable Wrapping
+"
+" set modeline. This enables vim to parse comments on files to set filetype
+" and other options
+set modeline
+
 syntax enable
 set shiftwidth=4 tabstop=4
 filetype plugin indent on
 autocmd FileType javascript set shiftwidth=4 tabstop=4
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+let g:ycm_python_binary_path = '/home/werner/src/voss2/bin/python'
 set expandtab
-
 ""set cmdheight=2
 " Turn on the WiLd menu
 set wildmenu
@@ -77,10 +85,17 @@ nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
 imap <c-s> <Esc><c-s>
 ""Buffer toggle
+setlocal nobuflisted
 nmap <Leader>q :bprevious<CR>
 nmap <Leader>w :bnext<CR>
 
+augroup QFix
+    autocmd!
+    autocmd FileType qf setlocal nobuflisted
+augroup END
+
 nmap <f5> :NERDTreeToggle<CR>
+nmap <f6> :NERDTreeFind<CR>
 
 nmap <Leader>c :Bclose<CR>
 nmap <Leader>d :bdelete<CR>
@@ -103,6 +118,7 @@ au BufRead *.py highlight ColorColumn ctermbg=235 guibg=#2c2d27
 " set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dark'
+let g:airline_theme = 'molokai'
 
 hi MBEVisibleActive guifg=#FFFFFF guibg=#3399ff
 hi MBEVisibleChangedActive guifg=#FFFFFF guibg=#FF00FF
@@ -149,8 +165,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_enable_signs = 0
-let g:syntastic_enable_balloons = 0
-let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_balloons = 1
+let g:syntastic_enable_highlighting = 1
 "let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers=['flake8']
 
@@ -177,7 +193,8 @@ vnoremap -# :s#^\###<cr>:let @/ = ""<cr>
 
 " Read the output of a command into a buffer
 ":command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
-:command! -nargs=* -complete=shellcmd GitBlame let blah = system('git blame '.expand("%")) | tabnew |  new | setlocal buftype=nofile bufhidden=hide noswapfile | put =blah | only
+:command! -nargs=* -complete=shellcmd GitBlame let blah = system('git blame '.expand("%")) | let cur = getpos('.') | new | setlocal buftype=nofile bufhidden=hide noswapfile | put =blah | :call cursor(cur[1], cur[2]) | only
 
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>jh :YcmCompleter GetDoc<CR>
