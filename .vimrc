@@ -1,4 +1,5 @@
 set t_Co=256
+syntax on
 " Pathogen load
 filetype off
 set encoding=utf-8
@@ -6,32 +7,40 @@ call pathogen#infect()
 call pathogen#helptags()
 
 filetype plugin indent on
-syntax on
 
-set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**/*.xml,lib/model/device/**/*.xsd
+set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**/*.xml,lib/model/device/**/*.xsd,*.png,*.jpg
 
 let g:airline#extensions#tabline#enabled = 1
 
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1 
-"let g:miniBufExplSplitBelow = 1
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplDebugLevel = 0
-let g:miniBufExplorerDebugLevel = 0
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1 
+""let g:miniBufExplSplitBelow = 1
+"let g:miniBufExplUseSingleClick = 1
+"let g:miniBufExplDebugLevel = 0
+"let g:miniBufExplorerDebugLevel = 0
 "let python_highlight_all = 1
-
-""Ignore Ruby warnings
-"@Deprecated?
-let g:LustyJugglerSuppressRubyWarning = 1
 
 let mapleader=","
 
+"Powerline tweaks
+" set laststatus=2
+let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'molokai'
+let g:airline_theme = 'dark'
+set laststatus=2   " Always show the statusline
+let g:Powerline_symbols = 'unicode'
+let g:airline_symbols_ascii = 1
+let g:airline_section_x=""
+
+
+"
 "colorscheme wombat256
 "colorscheme rdark
 "colorscheme herald
 colorscheme molokai
+" :colorscheme mustang
 
 ""Clipboard funkyness
 "#nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -68,7 +77,11 @@ set shiftwidth=4 tabstop=4
 filetype plugin indent on
 autocmd FileType javascript set shiftwidth=4 tabstop=4
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-let g:ycm_python_binary_path = '/home/werner/src/voss2/bin/python'
+
+let g:ycm_python_binary_path = '/usr/bin/python2.7'
+let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_server_python_interpreter = ''
+
 set expandtab
 ""set cmdheight=2
 " Turn on the WiLd menu
@@ -107,18 +120,13 @@ nmap <F8> :TagbarToggle<CR>
 
 map <Leader>f :!python -m json.tool<CR>
 " autocmd FileType python map <buffer> <[[>
-set colorcolumn=80
-highlight ColorColumn guibg=Black
+" set colorcolumn=80
+"highlight ColorColumn guibg=Black
+"
+"au BufRead *.py set colorcolumn=81
+"au BufRead *.py let &colorcolumn=join(range(81,120),",")
+"au BufRead *.py highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
-au BufRead *.py set colorcolumn=81
-au BufRead *.py let &colorcolumn=join(range(81,120),",")
-au BufRead *.py highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-"Powerline tweaks
-" set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'dark'
-let g:airline_theme = 'molokai'
 
 hi MBEVisibleActive guifg=#FFFFFF guibg=#3399ff
 hi MBEVisibleChangedActive guifg=#FFFFFF guibg=#FF00FF
@@ -127,30 +135,30 @@ hi MBENormal guifg=#cccccc guibg=#666666
 hi MBEChanged guifg=#FF00FF guibg=#666666
 
 " Set some GUI options
-set guifont=Monospace\ 9
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 9"
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9"
+set guifont=Monospace\ 14
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 12"
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12"
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 
-" python-mode settings
-let g:pymode_folding = 0
-let g:pymode_utils_whitespaces = 0
-let g:pymode_lint = 0
-let g:pymode_lint_write = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_sort = ['E', 'C', 'I']
-let g:pymode_lint_cwindow = 0
-let g:pymode_rope_completion_bind = '<C-Space>'
-
-let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope = 0
-let g:pymode_options_max_line_length = 119
+" " python-mode settings
+" let g:pymode_folding = 0
+" let g:pymode_utils_whitespaces = 0
+" let g:pymode_lint = 0
+" let g:pymode_lint_write = 0
+" let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+" let g:pymode_lint_config = "/home/werner/src/voss2/.pylintrc"
+" let g:pymode_lint_on_fly = 0
+" let g:pymode_lint_sort = ['E', 'C', 'I']
+" let g:pymode_lint_cwindow = 0
+" let g:pymode_rope_completion_bind = '<C-Space>'
+" 
+" let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
+" let g:pymode_rope_complete_on_dot = 0
+" let g:pymode_rope_lookup_project = 0
+" let g:pymode_rope_regenerate_on_write = 0
+" let g:pymode_rope = 0
+" let g:pymode_options_max_line_length = 119
 
 
 let g:pymode_breakpoint_cmd = 'import pudb; pudb.set_trace()  # XXX BREAKPOINT'
@@ -161,20 +169,18 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 2
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_enable_signs = 0
 let g:syntastic_enable_balloons = 1
 let g:syntastic_enable_highlighting = 1
-"let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_python_checkers = ['pep8']
+let g:syntastic_python_checkers=['python']
 
 let g:syntastic_python_flake8_args='--ignore=E501,E225,E702,E265'
 setlocal textwidth=120
-"
-" Command-T
-let g:CommandTMaxHeight=15
 
 " Grep all python files in current path.
 command! -nargs=+ -complete=file -bar Grep copen | grep! <args> **/*.py 
@@ -198,3 +204,10 @@ vnoremap -# :s#^\###<cr>:let @/ = ""<cr>
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>jh :YcmCompleter GetDoc<CR>
+
+nnoremap <leader>t :FZF<CR>
+
+" Set the number to relative. To disable set norelativenumber
+set relativenumber
+
+colorscheme molokai
