@@ -80,7 +80,10 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 let g:ycm_python_binary_path = '/usr/bin/python2.7'
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-let g:ycm_server_python_interpreter = ''
+
+
+let g:ycm_python_binary_path = '/home/werner/src/voss-deviceapi/env/bin/python'
+let g:ycm_server_python_interpreter = '/home/werner/src/voss-deviceapi/env/bin/python'
 
 set expandtab
 ""set cmdheight=2
@@ -206,6 +209,10 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>jh :YcmCompleter GetDoc<CR>
 
 nnoremap <leader>t :FZF<CR>
+nnoremap <leader>r :Buffers<CR>
+
+" Arg Wrap: https://github.com/jeetsukumaran/vim-argwrap
+nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " Set the number to relative. To disable set norelativenumber
 set relativenumber
