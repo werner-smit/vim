@@ -61,3 +61,51 @@
 [submodule "bundle/vim-argwrap"]
 	path = bundle/vim-argwrap
 	url = https://github.com/FooSoft/vim-argwrap
+[submodule "bundle/vim-dadbod"]
+	path = bundle/vim-dadbod
+	url = https://github.com/tpope/vim-dadbod.git
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "bundle/ayu-vim"]
+	path = bundle/ayu-vim
+	url = https://github.com/ayu-theme/ayu-vim
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "bundle/repeat"]
+	path = bundle/repeat
+	url = https://tpope.io/vim/repeat.git
+[submodule "bundle/vim-unimpaired"]
+	path = bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/gruvbox"]
+	path = bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "bundle/sideways.vim"]
+	path = bundle/sideways.vim
+	url = https://github.com/AndrewRadev/sideways.vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+[submodule "bundle/auto-pairs"]
+	path = bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "bundle/vim-jsx-pretty"]
+	path = bundle/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule "bundle/vim-bufclean"]
+	path = bundle/vim-bufclean
+	url = https://github.com/pmconne/vim-bufclean.git
+[submodule "bundle/close-buffers.vim"]
+	path = bundle/close-buffers.vim
+	url = https://github.com/Asheq/close-buffers.vim.git
+[submodule "bundle/vim-autopep8"]
+	path = bundle/vim-autopep8
+	url = https://github.com/tell-k/vim-autopep8.git
+[submodule "bundle/vim-autoflake"]
+	path = bundle/vim-autoflake
+	url = https://github.com/tell-k/vim-autoflake.git

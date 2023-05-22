@@ -8,21 +8,33 @@ call pathogen#helptags()
 
 filetype plugin indent on
 
+" Set the number to relative. To disable set norelativenumber
+set relativenumber
+setlocal textwidth=120
+
 set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**/*.xml,lib/model/device/**/*.xsd,*.png,*.jpg
+
+let mapleader=","
 
 let g:airline#extensions#tabline#enabled = 1
 
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1 
-""let g:miniBufExplSplitBelow = 1
-"let g:miniBufExplUseSingleClick = 1
-"let g:miniBufExplDebugLevel = 0
-"let g:miniBufExplorerDebugLevel = 0
-"let python_highlight_all = 1
+" Disable able branch view (too much realestate)
+let g:airline_section_b = ''
+let g:airline_section_y = ''
+"let g:airline_section_z = ['percentage', 'line', 'number', 'column', 'number']
+let g:airline_section_z = '%3p%%:%v'
+"let g:airline_extensions = ['bufferline', 'tabline', 'tagbar']
 
-let mapleader=","
+"let g:airline#extensions#default#section_truncate_width = {
+"    \ 'b': 79
+"    \ 'x': 60,
+"    \ 'y': 88,
+"    \ 'z': 10,
+"    \ 'warning': 10,
+"    \ 'error': 10,
+"    \ }
+
+"let python_highlight_all = 1
 
 "Powerline tweaks
 " set laststatus=2
@@ -32,15 +44,29 @@ let g:airline_theme = 'dark'
 set laststatus=2   " Always show the statusline
 let g:Powerline_symbols = 'unicode'
 let g:airline_symbols_ascii = 1
-let g:airline_section_x=""
+"let g:airline_section_x=""
 
-
+" For gruvbox fonts
+let g:gruvbox_italic=1
+set termguicolors
 "
 "colorscheme wombat256
 "colorscheme rdark
 "colorscheme herald
-colorscheme molokai
+"colorscheme molokai
 " :colorscheme mustang
+colorscheme ayu
+colorscheme anotherdark
+colorscheme desertEx
+colorscheme gruvbox
+
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+let g:airline_theme = 'minimalist'
+let g:airline_theme = 'gruvbox'
+
 
 ""Clipboard funkyness
 "#nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -75,15 +101,18 @@ set modeline
 syntax enable
 set shiftwidth=4 tabstop=4
 filetype plugin indent on
-autocmd FileType javascript set shiftwidth=4 tabstop=4
+autocmd FileType javascript set shiftwidth=2 tabstop=2
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-let g:ycm_python_binary_path = '/usr/bin/python2.7'
-let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+"let g:ycm_python_binary_path = '/usr/bin/python2.7'
+"let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 
 
-let g:ycm_python_binary_path = '/home/werner/src/voss-deviceapi/env/bin/python'
-let g:ycm_server_python_interpreter = '/home/werner/src/voss-deviceapi/env/bin/python'
+"let g:ycm_python_binary_path = '/home/werner/src/voss-deviceapi/env/bin/python'
+"let g:ycm_server_python_interpreter = '/home/werner/src/voss-deviceapi/env/bin/python'
+"
+let g:ycm_python_binary_path = '/home/werner/.pyenv/shims/python2.7'
+let g:ycm_server_python_interpreter = '/home/werner/.pyenv/shims/python2.7'
 
 set expandtab
 ""set cmdheight=2
@@ -102,20 +131,21 @@ imap <c-s> <Esc>:w<CR>a
 imap <c-s> <Esc><c-s>
 ""Buffer toggle
 setlocal nobuflisted
-nmap <Leader>q :bprevious<CR>
-nmap <Leader>w :bnext<CR>
+" Legacy. We use popes buffer [ b or ]b now
+" nmap <Leader>q :bprevious<CR>
+" nmap <Leader>w :bnext<CR>
 
-augroup QFix
-    autocmd!
-    autocmd FileType qf setlocal nobuflisted
-augroup END
+"augroup QFix
+"    autocmd!
+"    autocmd FileType qf setlocal nobuflisted
+"augroup END
 
 nmap <f5> :NERDTreeToggle<CR>
 nmap <f6> :NERDTreeFind<CR>
 
-nmap <Leader>c :Bclose<CR>
-nmap <Leader>d :bdelete<CR>
-nmap <Leader>h :MRU<CR>
+nmap <Leader>d :Bclose<CR>
+nmap bd :Bclose<CR>
+"nmap <Leader>d :bdelete<CR>
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -141,6 +171,7 @@ hi MBEChanged guifg=#FF00FF guibg=#666666
 set guifont=Monospace\ 14
 set guifont=Source\ Code\ Pro\ for\ Powerline\ 12"
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12"
+set guifont=Source\ Code\ Pro\ 11
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 
@@ -155,7 +186,7 @@ set guioptions-=T  "remove toolbar
 " let g:pymode_lint_sort = ['E', 'C', 'I']
 " let g:pymode_lint_cwindow = 0
 " let g:pymode_rope_completion_bind = '<C-Space>'
-" 
+
 " let g:pymode_paths = ['/home/werner/src/voss2/eggs/', '/home/werner/src/voss2/src/']
 " let g:pymode_rope_complete_on_dot = 0
 " let g:pymode_rope_lookup_project = 0
@@ -163,8 +194,9 @@ set guioptions-=T  "remove toolbar
 " let g:pymode_rope = 0
 " let g:pymode_options_max_line_length = 119
 
-
-let g:pymode_breakpoint_cmd = 'import pudb; pudb.set_trace()  # XXX BREAKPOINT'
+" Somewhere during some update, I've lost automatic underlining in spellon
+" mode. Re-enabling it here.
+hi SpellBad cterm=underline ctermfg=red gui=undercurl
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -172,21 +204,28 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 2
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_enable_signs = 0
 let g:syntastic_enable_balloons = 1
 let g:syntastic_enable_highlighting = 1
 "let g:syntastic_python_checkers = ['pep8']
-let g:syntastic_python_checkers=['python']
+let g:syntastic_python_checkers=['flake8']
 
 let g:syntastic_python_flake8_args='--ignore=E501,E225,E702,E265'
-setlocal textwidth=120
 
+" Autopep8
+let g:autopep8_max_line_length=119
+" Autoflake8 unused import to remove
+"let g:autoflake_imports="django,requests,urllib3,mock,deviceapi"
+let g:autoflake_remove_all_unused_imports = 1
+let g:autoflake_cmd = "/home/werner/bin/autoflake"
 " Grep all python files in current path.
-command! -nargs=+ -complete=file -bar Grep copen | grep! <args> **/*.py 
+" cwindow will open in the bottom right if vertical splits are present. This sets it to full width. see :h quickfix-window
+command! -nargs=+ -complete=file -bar Grep botright copen | grep! <args> **/*.py
+" botright cwindow
 
 " Surround with single quote
 nmap <Leader>s ysiw
@@ -206,6 +245,7 @@ vnoremap -# :s#^\###<cr>:let @/ = ""<cr>
 
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>jds :right horizontal YcmCompleter GoTo<CR>
 nnoremap <leader>jh :YcmCompleter GetDoc<CR>
 
 nnoremap <leader>t :FZF<CR>
@@ -214,7 +254,11 @@ nnoremap <leader>r :Buffers<CR>
 " Arg Wrap: https://github.com/jeetsukumaran/vim-argwrap
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
-" Set the number to relative. To disable set norelativenumber
-set relativenumber
+" Sideways plugin allows moving arguments, list items and many other objects
+" left or right.
+" mnemonic would be leader move <direction>
+nnoremap <leader>mh :SidewaysLeft<cr>
+nnoremap <leader>ml :SidewaysRight<cr>
 
-colorscheme molokai
+noremap <silent> <leader>B oimport pudb; pudb.set_trace()<esc>
+noremap <silent> <leader>b Oimport pudb; pudb.set_trace()<esc>
