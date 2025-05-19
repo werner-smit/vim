@@ -109,3 +109,18 @@
 [submodule "bundle/vim-autoflake"]
 	path = bundle/vim-autoflake
 	url = https://github.com/tell-k/vim-autoflake.git
+[submodule "bundle/codeium.vim"]
+	path = bundle/codeium.vim
+	url = https://github.com/Exafunction/codeium.vim.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/preservim/vim-markdown
+[submodule "bundle/vim-better-whitespace"]
+	path = bundle/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git
+[submodule "bundle/editorconfig-vim"]
+	path = bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git

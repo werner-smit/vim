@@ -1,3 +1,4 @@
+" let g:python3_host_prog = expand('/home/werner/.vimvenv/bin/python')
 set t_Co=256
 syntax on
 " Pathogen load
@@ -13,6 +14,7 @@ set relativenumber
 setlocal textwidth=120
 
 set wildignore=*.o,*.obj,.git,*.pyc,lib/model/device/**/*.xml,lib/model/device/**/*.xsd,*.png,*.jpg
+let $PATH .= ":".expand('~/.vimvenv/bin/')
 
 let mapleader=","
 
@@ -58,7 +60,16 @@ set termguicolors
 colorscheme ayu
 colorscheme anotherdark
 colorscheme desertEx
+" Last used:
 colorscheme gruvbox
+" railcasts sets the number colums to a very light color. Just override here.
+autocmd ColorScheme * highlight LineNr guibg=NONE
+
+" Chaging the center colum to something more elegent than the white specified
+" by railscasts
+autocmd ColorScheme * hi VertSplit gui=NONE guibg=NONE
+
+colorscheme railscasts2
 
 set termguicolors     " enable true colors support
 let ayucolor="light"  " for light version of theme
@@ -66,6 +77,7 @@ let ayucolor="mirage" " for mirage version of theme
 "let ayucolor="dark"   " for dark version of theme
 let g:airline_theme = 'minimalist'
 let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'base16_gruvbox_dark_soft'
 
 
 ""Clipboard funkyness
@@ -103,16 +115,10 @@ set shiftwidth=4 tabstop=4
 filetype plugin indent on
 autocmd FileType javascript set shiftwidth=2 tabstop=2
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-"let g:ycm_python_binary_path = '/usr/bin/python2.7'
-"let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-
-
-"let g:ycm_python_binary_path = '/home/werner/src/voss-deviceapi/env/bin/python'
-"let g:ycm_server_python_interpreter = '/home/werner/src/voss-deviceapi/env/bin/python'
-"
-let g:ycm_python_binary_path = '/home/werner/.pyenv/shims/python2.7'
-let g:ycm_server_python_interpreter = '/home/werner/.pyenv/shims/python2.7'
+" Enable automatic line wrapping with newlines for Markdown files
+autocmd FileType markdown setlocal textwidth=120
+autocmd FileType markdown setlocal formatoptions+=t
+autocmd FileType markdown setlocal formatoptions+=c
 
 set expandtab
 ""set cmdheight=2
@@ -143,9 +149,9 @@ setlocal nobuflisted
 nmap <f5> :NERDTreeToggle<CR>
 nmap <f6> :NERDTreeFind<CR>
 
+" Unmap the Bclose command from <Leader>bd to avoid conflicts or delays
+" We need to disable the plugin mappings to not set bclose to <Leader>bd
 nmap <Leader>d :Bclose<CR>
-nmap bd :Bclose<CR>
-"nmap <Leader>d :bdelete<CR>
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -224,7 +230,8 @@ let g:autoflake_remove_all_unused_imports = 1
 let g:autoflake_cmd = "/home/werner/bin/autoflake"
 " Grep all python files in current path.
 " cwindow will open in the bottom right if vertical splits are present. This sets it to full width. see :h quickfix-window
-command! -nargs=+ -complete=file -bar Grep botright copen | grep! <args> **/*.py
+command! -nargs=+ -complete=file -bar GrepAll botright copen | grep! -r  --exclude=".git/" <args> ./
+command! -nargs=+ -complete=file -bar Grep botright copen | grep! -r --include="*.py" <args> ./
 " botright cwindow
 
 " Surround with single quote
@@ -234,6 +241,7 @@ nmap <Leader>s ysiw
 nmap <Leader>nr :RecentNotes<cr>
 nmap <Leader>nn :edit note:<cr>
 nmap <Leader>nd :DeleteNote<cr>
+:let g:notes_tab_indents = 0
 
 " comment code
 vnoremap # :s#^#\##<cr>:let @/ = ""<cr>
@@ -262,3 +270,29 @@ nnoremap <leader>ml :SidewaysRight<cr>
 
 noremap <silent> <leader>B oimport pudb; pudb.set_trace()<esc>
 noremap <silent> <leader>b Oimport pudb; pudb.set_trace()<esc>
+
+function! GetDotNotatedString()
+
+    " Get the current file name
+    let current_file = expand("%")
+
+    " Get the current working directory
+    let current_directory = getcwd()
+    echo  current_directory
+
+    " Obtain the relative path of the current file relative to the current working directory
+    let l:filename = fnamemodify(current_file, ":~:.")
+    " Get the current function name
+    let l:funcname = getline(search('^def', 'bn', line('.')))[0:]
+    let l:funcname = substitute(l:funcname, '^def\s\+', '', '')
+
+    " Replace whitespace with underscores and concatenate the file name and function name
+    let l:dot_notated_string = substitute(l:filename, '/', '.', 'g') . '.' . l:funcname
+
+    let command = 'echo "' . l:dot_notated_string . '" | xclip -selection clipboard'
+    call system(command)
+    " Print the dot-notated string
+    echo l:dot_notated_string . " copied to clipboard"
+endfunction
+
+let g:codeium_enabled = v:false
